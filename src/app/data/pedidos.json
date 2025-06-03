@@ -1,0 +1,7 @@
+[
+  { "cliente": "Maria", "itens": ["Lasanha", "Suco"], "mesa": 1 },
+  { "cliente": "Carlos", "itens": ["Hambúrguer", "Refrigerante"], "mesa": 2 },
+  { "cliente": "Ana", "itens": ["Sopa", "Água"], "mesa": 3 },
+  { "cliente": "Lucas", "itens": ["Pizza", "Cerveja"], "mesa": 4 },
+  { "cliente": "Fernanda", "itens": ["Salada", "Chá"], "mesa": 5 }
+]

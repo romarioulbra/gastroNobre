@@ -1,0 +1,48 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+pnpm-lock.yaml
+
+# Ambiente
+.env
+.env.*
+
+# Build
+dist/
+build/
+.next/
+out/
+
+# Logs
+logs/
+*.log
+
+# Editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Testes
+coverage/
+jest-cache/
+jest-coverage/
+
+# TypeScript
+*.tsbuildinfo
+
+# Expo/React Native
+.expo/
+.expo-shared/
+android/
+ios/
+
+# LocalStack
+localstack/.localstack/

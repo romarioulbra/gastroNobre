@@ -1,0 +1,36 @@
+{
+  "name": "nextjs-localstack-app",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.817.0",
+    "@aws-sdk/client-s3": "^3.817.0",
+    "@aws-sdk/client-sqs": "^3.817.0",
+    "@aws-sdk/lib-dynamodb": "^3.817.0",
+    "@aws-sdk/s3-request-presigner": "^3.816.0",
+    "@tanstack/react-table": "^8.21.3",
+    "axios": "^1.9.0",
+    "framer-motion": "^12.15.0",
+    "next": "15.0.0",
+    "nextjs-localstack-app": "file:",
+    "pdfkit": "^0.17.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "^5.5.0",
+    "tanstack": "^1.0.0",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.21",
+    "@types/react": "19.1.5",
+    "@types/uuid": "^10.0.0",
+    "autoprefixer": "^10.4.12",
+    "postcss": "^8.4.18",
+    "tailwindcss": "^3.2.4",
+    "typescript": "^5.0.0"
+  }
+}
