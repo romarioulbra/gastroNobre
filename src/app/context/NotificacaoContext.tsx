@@ -109,7 +109,7 @@ interface NotificacaoContextType {
   marcarComoLida: (id: string) => void
   marcarTodasComoLidas: () => void
   limparNotificacoes: () => void
-  naoLidasCount: number
+  naoLidasCount: number,
 }
 
 const NotificacaoContext = createContext<NotificacaoContextType>({

@@ -2,7 +2,7 @@
 
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState,useRef } from 'react'
 import { usePedidoContext } from '../context/PedidoContext'
 import {
   ColumnDef,
@@ -43,6 +43,8 @@ const ActionButton = ({ children, onClick, className, icon: Icon, variant = 'def
 
 export default function PedidoList() {
   const { pedidos, fetchPedidos, removerPedido, atualizarStatusPedido, gerarComprovante } = usePedidoContext()
+  const pedidosAnterioresRef = useRef<Pedido[]>([])
+
   const [loading, setLoading] = useState(false)
   const [globalFilter, setGlobalFilter] = useState('')
   const [sucesso, setSucesso] = useState<string | null>(null)
@@ -54,6 +56,31 @@ export default function PedidoList() {
     isOpen: false,
     pedidoId: null as string | null,
   })
+
+
+  useEffect(() => {
+  const anteriores = pedidosAnterioresRef.current
+
+  pedidos.forEach(pedidoAtual => {
+    const anterior = anteriores.find(p => p.id === pedidoAtual.id)
+    if (
+      anterior &&
+      anterior.status !== 'concluido' &&
+      pedidoAtual.status === 'concluido'
+    ) {
+      adicionarNotificacao({
+        titulo: 'Pedido pronto!',
+        mensagem: `O pedido da mesa ${pedidoAtual.mesa} está pronto.`,
+        tipo: 'sucesso',
+        tempo: 5000
+      })
+    }
+  })
+
+  pedidosAnterioresRef.current = pedidos
+}, [pedidos, adicionarNotificacao])
+
+
 
   useEffect(() => {
     const carregar = async () => {
