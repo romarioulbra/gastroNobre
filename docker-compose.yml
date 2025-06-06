@@ -1,16 +1,33 @@
-# version: "3.8"
+# # version: "3.8"
+
+# services:
+#   localstack:
+#     image: localstack/localstack:latest
+#     # image: pedidos/localstack:latest
+#     ports:
+#       - "4566:4566" # Porta única para todos os serviços em LocalStack
+#     environment:
+#       - SERVICES=s3,sqs,dynamodb # Habilita S3, SQS e DynamoDB
+#       - DEFAULT_REGION=us-east-1
+#       - AWS_ACCESS_KEY_ID=test
+#       - AWS_SECRET_ACCESS_KEY=test
+#     volumes:
+#       - ./localstack/init:/etc/localstack/init/ready.d # Scripts de inicialização
+#       - /var/run/docker.sock:/var/run/docker.sock
+version: "3.8"
 
 services:
   localstack:
     image: localstack/localstack:latest
-    # image: pedidos/localstack:latest
     ports:
-      - "4566:4566" # Porta única para todos os serviços em LocalStack
+      - "4566:4566" # Porta única para todos os serviços do LocalStack
     environment:
-      - SERVICES=s3,sqs,dynamodb # Habilita S3, SQS e DynamoDB
+      - SERVICES=s3,sqs,dynamodb,sns
       - DEFAULT_REGION=us-east-1
       - AWS_ACCESS_KEY_ID=test
       - AWS_SECRET_ACCESS_KEY=test
+      - DEBUG=1
     volumes:
       - ./localstack/init:/etc/localstack/init/ready.d # Scripts de inicialização
       - /var/run/docker.sock:/var/run/docker.sock
+

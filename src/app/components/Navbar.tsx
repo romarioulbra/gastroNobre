@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { FiHome, FiShoppingCart, FiClock, FiCoffee } from 'react-icons/fi'
 import { GiCook, GiChefToque } from 'react-icons/gi'
 import { RiRestaurantFill } from 'react-icons/ri'
+import { NotificacaoMenu } from './NotificacaoMenu'
 
 export default function Navbar() {
   return (
@@ -85,6 +86,10 @@ export default function Navbar() {
             </motion.div>
           </Link>
         ))}
+        <div >
+          <NotificacaoMenu />
+        </div>
+        
       </div>
     </motion.nav>
   )
