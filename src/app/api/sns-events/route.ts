@@ -1,21 +1,32 @@
-import { NextApiRequest, NextApiResponse } from 'next'
+// app/api/sns-events/route.ts
+import { NextResponse } from "next/server";
+import { SNSClient, PublishCommand } from "@aws-sdk/client-sns";
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  res.setHeader('Content-Type', 'text/event-stream')
-  res.setHeader('Cache-Control', 'no-cache')
-  res.setHeader('Connection', 'keep-alive')
-  res.flushHeaders()
+const sns = new SNSClient({
+  region: "us-east-1",
+  endpoint: "http://localhost:4566",
+  credentials: {
+    accessKeyId: "test",
+    secretAccessKey: "test"
+  }
+});
 
-  // Em produção, você se conectaria ao SNS real aqui
-  if (process.env.NODE_ENV === 'development') {
-    // Simulador de eventos para desenvolvimento
-    const interval = setInterval(() => {
-      // Não envia nada automaticamente, apenas mantém a conexão aberta
-    }, 5000)
+const TOPIC_ARN = "arn:aws:sns:us-east-1:000000000000:novo-pedido";
 
-    req.on('close', () => {
-      clearInterval(interval)
-      res.end()
-    })
+export async function POST(req: Request) {
+  try {
+    const body = await req.json();
+
+    const command = new PublishCommand({
+      TopicArn: TOPIC_ARN,
+      Message: JSON.stringify(body)
+    });
+
+    await sns.send(command);
+
+    return NextResponse.json({ status: "Mensagem publicada no SNS com sucesso." });
+  } catch (error) {
+    console.error("Erro ao publicar no SNS:", error);
+    return NextResponse.json({ error: "Erro ao publicar no SNS." }, { status: 500 });
   }
 }
